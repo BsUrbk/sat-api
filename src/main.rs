@@ -5,9 +5,9 @@ use rust_decimal::Decimal;
 
 #[derive(Deserialize)]
 struct FuelComsumptionInfo {
-    distance: u32,
+    distance: Decimal,
     yearOfProduction: u32,
-    fuelUsagePer100KM: u32,
+    fuelUsagePer100KM: Decimal,
 }
 
 #[derive(Deserialize)]
@@ -17,7 +17,7 @@ struct FailProbability {
 
 #[get("/calculateDisselUsageForDistance")]
 async fn calculateDisselUsageForDistance(vehicle_info: web::Query<FuelComsumptionInfo>) -> Result<String>{
-    let fuel_usage = (vehicle_info.distance / 100) * vehicle_info.fuelUsagePer100KM;
+    let fuel_usage: Decimal = (vehicle_info.distance / Decimal::new(100,0)) * vehicle_info.fuelUsagePer100KM;
     Ok(format!("fuelUsage: {}", fuel_usage))
 }
 
