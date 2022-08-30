@@ -24,7 +24,7 @@ async fn calculateDisselUsageForDistance(vehicle_info: web::Query<FuelComsumptio
 #[get("/probabilityOfUnitInjectorFail")]
 async fn probabilityOfUnitInjectorFail(_vin: web::Query<FailProbability>) -> Result<String>{
     let mut rng = rand::thread_rng();
-    let fail_probability = rng.gen_range(1..101);
+    let fail_probability = rng.gen_range(0..101);
     let res = Decimal::new(fail_probability, 2);
     Ok(format!("failProbability: {}", res.to_string().trim().replace('.',",")))
 }
