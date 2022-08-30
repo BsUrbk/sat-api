@@ -15,7 +15,7 @@ clone the repository
 git clone https://github.com/BsUrbk/sat-api.git
 ```
 
-cd into the repository and run
+cd into the directory and run
 
 ``` bash
 cargo build
